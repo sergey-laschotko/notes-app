@@ -8,8 +8,9 @@ import { EditNoteComponent } from './edit-note/edit-note.component';
 const routes: Routes = [
   { path: "", component: NotesListComponent, pathMatch: "full" },
   { path: "create-note", component: CreateNoteComponent },
+  { path: "edit-note", redirectTo: "/", pathMatch: "full" },
   { path: "edit-note/:id", component: EditNoteComponent },
-  { path: "**", component: NotesListComponent }
+  { path: "**", redirectTo: "/" }
 ];
 
 @NgModule({

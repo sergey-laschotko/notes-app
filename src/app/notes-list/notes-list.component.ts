@@ -11,7 +11,6 @@ import { NotesService } from "../notes.service";
 })
 export class NotesListComponent implements OnInit {
   notes: INote[] = [];
-  tagedNotes: INote[] = [];
   tags: string[] = [];
   selectedTag: string = "";
 
@@ -27,7 +26,6 @@ export class NotesListComponent implements OnInit {
       .then((notes: INote[]) => {
         this.notes = notes;
         this.getTags();
-        this.checkForTags(this.notes);
       });
   }
 
@@ -42,34 +40,12 @@ export class NotesListComponent implements OnInit {
     this.getNotes();
   }
 
-  checkForTags(notes: INote[]) {
-    this.tagedNotes = [];
-    notes.forEach((note: INote) => {
-      let words = note.content.split(" ");
-      words = words.map((word: string) => {
-        if (word[0] === "#") {
-          return word = `<span class="hashtag">${word}</span>`
-        }
-        return word;
-      });
-      let content = words.join(" ");
-      let tagedNote = { 
-        title: note.title,
-        content,
-        id: note.id
-      };
-      this.tagedNotes.push(tagedNote);
-    });
-  }
-
   findByTag(tag: string) {
     this.notes = this.ns.findByTag(tag);
-      this.checkForTags(this.notes);
   }
 
   removeTag(tag: string) {
     this.notes = this.ns.removeTag(tag);
-    this.checkForTags(this.notes);
     this.getTags();
   }
 }
