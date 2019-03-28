@@ -136,5 +136,10 @@
       }
     }
   },
-  "defaultProject": "notes-app"
+  "defaultProject": "notes-app",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row my-3 ml-2 mr-2">
+    <div *ngIf="!notes.length">
+      <h5>There isn't any note to show.</h5>
+      <button class="btn btn-success">
+        <i class="fa fa-edit"></i>
+        Create Note
+      </button>
+    </div>
+    <app-note *ngFor="let note of notes" [title]="note.title" [content]="note.content" [id]="note.id"></app-note>
+  </div>
+</div>
