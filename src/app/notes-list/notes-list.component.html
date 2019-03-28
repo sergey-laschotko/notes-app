@@ -1,6 +1,41 @@
 <div class="container">
+  <div class="row my-3 ml-2 mr-2 notes-list_header">
+    <h3>List of Notes</h3>
+    <form class="form-inline my-2 my-lg-0">
+      <div class="input-group">
+        <input 
+        class="form-control" 
+          type="search" 
+          placeholder="Search" 
+          name="seletedTag" 
+          [(ngModel)]="selectedTag"
+          aria-label="Search"
+          >
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="submit" (click)="findByTag(selectedTag)">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
   <div class="row my-3 ml-2 mr-2">
-    <div *ngIf="!notes.length">
+    <p class="text-muted">(Empty search shows all notes)</p>
+  </div>
+  <div class="row my-3 ml-2 mr-2">
+    <h4>Tags:</h4>
+    <p *ngIf="!tags.length">No tags was found</p>
+    <p *ngIf="tags.length">
+      <span *ngFor="let tag of tags" class="tag">
+        <span class="tag_text" (click)="findByTag(tag)">{{tag}}</span>
+        <span class="tag_remove" (click)="removeTag(tag)">
+          <i class="fa fa-trash"></i>
+        </span>
+      </span>
+    </p>
+  </div>
+  <div class="row my-3 ml-2 mr-2">
+    <div *ngIf="!tagedNotes.length">
       <h5>There isn't any note to show.</h5>
       <button class="btn btn-primary">
         <i class="fa fa-edit"></i>
@@ -9,7 +44,7 @@
     </div>
     <app-note
       class=" col-lg-3 col-md-3 col-sm-6" 
-      *ngFor="let note of notes" 
+      *ngFor="let note of tagedNotes" 
       [title]="note.title" 
       [content]="note.content" 
       [id]="note.id"

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import uniqid from "uniqid";
+import * as _ from "lodash";
 
 import { INote } from "../models/note";
 
@@ -35,6 +36,23 @@ export class NotesService {
       });
   }
 
+  getTages() {
+    return this.isReady
+      .then(() => {
+        let tags: string[] = [];
+        this.notes.forEach((note: INote) => {
+          let words = note.content.split(" ");
+          words.map((word: string) => {
+            if (word[0] === "#") {
+              tags.push(word);
+            }
+          });
+        });
+        tags = _.uniq(tags);
+        return tags;
+      });
+  }
+
   createNote(title: string, content: string) {
     this.notes.push({
       id: uniqid(),
@@ -53,5 +71,49 @@ export class NotesService {
 
   removeNote(id: string) {
     this.notes = this.notes.filter((note: INote) => note.id !== id);
+  }
+
+  findByTag(tag: string) {
+    if (!tag.length) {
+      return this.notes;
+    }
+    if (tag[0] !== "#") {
+      return [];
+    }
+    let results = [];
+    this.notes.map((note: INote) => {
+      let words = note.content.split(" ");
+      let resultsNumber = 0;
+      words.forEach((word: string) => {
+        if (word === tag) {
+          resultsNumber += 1;
+        }
+      });
+      if (resultsNumber > 0) {
+        results.push(note);
+      }
+    });
+    return results;
+  }
+
+  removeTag(tag: string) {
+    this.notes = this.notes.map((note: INote) => {
+      let words = note.content.split(" ");
+      words = words.map((word: string) => {
+        if (word === tag) {
+          word = word.slice(1);
+          return word;
+        }
+        return word;
+      });
+      let content = words.join(" ");
+      return {
+        id: note.id,
+        title: note.title,
+        content
+      };
+    });
+
+    return this.notes;
   }
 }

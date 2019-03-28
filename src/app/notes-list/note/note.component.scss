@@ -12,7 +12,7 @@
     border-radius: 5px 20px 5px 5px;
     background: #fffed0;
     position: relative;
-    box-shadow: 3px 5px 1px 1px #999;
+    box-shadow: 3px 5px 1px 1px #777;
 
     &:before {
         content: "";
@@ -39,6 +39,7 @@
     }
 
     &_content {
+        white-space: wrap;
         padding: 10px 20px;
         font-style: italic;
         font-size: 0.8em;
