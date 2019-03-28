@@ -1,18 +1,22 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+import { NotesService } from "../../notes.service";
 
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss']
 })
-export class NoteComponent implements OnInit {
+export class NoteComponent {
   @Input() id: string = "";
   @Input() title: string = "";
   @Input() content: string = "";
+  @Output() removeNote = new EventEmitter();
 
-  constructor() { }
+  constructor(private ns: NotesService) { }
 
-  ngOnInit() {
+  remove() {
+    this.ns.removeNote(this.id);
+    this.removeNote.emit();
   }
-
 }

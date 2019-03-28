@@ -2,10 +2,10 @@
   <div class="note_title">{{title}}</div>
   <div class="note_content">{{content}}</div>
   <div class="note_actions mt-auto">
-    <button class="btn btn-primary btn-sm note_edit">
+    <a class="btn btn-primary btn-sm note_edit" routerLink="edit/{{id}}">
       <i class="fa fa-edit"></i>
-    </button>
-    <button class="btn btn-danger btn-sm note_delete">
+    </a>
+    <button class="btn btn-danger btn-sm note_delete" (click)="remove()">
       <i class="fa fa-trash"></i>
     </button>
   </div>

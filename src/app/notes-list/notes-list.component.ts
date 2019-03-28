@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { INote } from "../../models/note";
+import { NotesService } from "../notes.service";
 
 @Component({
   selector: 'app-notes-list',
@@ -8,32 +9,24 @@ import { INote } from "../../models/note";
   styleUrls: ['./notes-list.component.scss']
 })
 export class NotesListComponent implements OnInit {
-  notes: INote[] = [
-    {
-      id: "12312",
-      title: "Some text",
-      content: "The first note content"
-    },
-    {
-      id: "12312",
-      title: "First Note",
-      content: "Some text that is content of current note and can be changed"
-    },
-    {
-      id: "12312",
-      title: "First Note",
-      content: "The first note content"
-    },
-    {
-      id: "12312",
-      title: "First Note",
-      content: "The first note content"
-    }
-  ];
+  notes: INote[] = [];
 
-  constructor() { }
+  constructor(private ns: NotesService) {
+    this.getNotes();
+  }
 
   ngOnInit() {
+  }
+
+  getNotes() {
+    this.ns.getNotes()
+      .then((notes: INote[]) => {
+        this.notes = notes;
+      });
+  }
+
+  removeNote() {
+    this.getNotes();
   }
 
 }
