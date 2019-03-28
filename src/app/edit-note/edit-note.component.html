@@ -1,3 +1,14 @@
-<p>
-  edit-note works!
-</p>
+<div class="container">
+  <div class="row">
+    <h3 class="my-3">Edit Note</h3>
+  </div>
+  <div class="row">
+    <app-note-form 
+      action="Edit" 
+      (transfer)="editNote($event)"
+      [title]="note.title"
+      [content]="note.content"
+    >
+    </app-note-form>
+  </div>
+</div>

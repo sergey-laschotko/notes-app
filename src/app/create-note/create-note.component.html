@@ -1,3 +1,8 @@
-<p>
-  create-note works!
-</p>
+<div class="container">
+  <div class="row">
+    <h3 class="my-3">Create New Note</h3>
+  </div>
+  <div class="row">
+    <app-note-form action="Create" (transfer)="createNote($event)"></app-note-form>
+  </div>
+</div>

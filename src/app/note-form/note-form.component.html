@@ -1,3 +1,17 @@
-<p>
-  note-form works!
-</p>
+<form class="note-form">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input class="form-control note-form_title-input" id="title" name="title" type="text" placeholder="Title" [(ngModel)]="title" />
+  </div>
+  <div class="form-group">
+    <label for="content">Content</label>
+    <textarea class="form-control note-form_content-input" id="content" name="content" placeholder="Note" [(ngModel)]="content"></textarea>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" [disabled]="!title || !content" (click)="sendData()">
+      <i class="fa fa-check"></i>
+      {{action}}
+    </button>
+  </div>
+</form>
+

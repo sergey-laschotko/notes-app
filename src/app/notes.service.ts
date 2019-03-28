@@ -28,6 +28,13 @@ export class NotesService {
       });
   }
 
+  getNote(id: string) {
+    return this.isReady
+      .then(() => {
+        return this.notes.filter((note: INote) => note.id === id)[0];
+      });
+  }
+
   createNote(title: string, content: string) {
     this.notes.push({
       id: uniqid(),

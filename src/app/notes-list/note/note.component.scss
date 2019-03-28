@@ -2,16 +2,15 @@
     display: flex;
     align-items: stretch;
     padding: 5px;
-    max-width: 50%;
 }
 
 .note {
     display: flex;
+    width: 100%;
     flex-direction: column;
     border: 2px solid black;
     border-radius: 5px 20px 5px 5px;
     background: #fffed0;
-    max-width: 200px;
     position: relative;
     box-shadow: 3px 5px 1px 1px #999;
 
@@ -31,7 +30,7 @@
     }
 
     &_title {
-        border-radius: 0 35px 0 0;
+        border-radius: 0 25px 0 0;
         font-size: 1.1em;
         font-weight: bold;
         padding: 10px 5px;
@@ -42,6 +41,7 @@
     &_content {
         padding: 10px 20px;
         font-style: italic;
+        font-size: 0.8em;
         max-height: 200px;
         overflow: auto;
     };
