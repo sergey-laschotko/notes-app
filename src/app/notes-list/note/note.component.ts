@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { NotesService } from "../../notes.service";
 
@@ -13,10 +13,30 @@ export class NoteComponent {
   @Input() content: string = "";
   @Output() removeNote = new EventEmitter();
 
+  @ViewChild('noteContent') noteContent: any;
+
   constructor(private ns: NotesService) { }
+
+  ngAfterViewInit() {
+    this.replaceByHashes(this.noteContent.nativeElement);
+  }
 
   remove() {
     this.ns.removeNote(this.id);
     this.removeNote.emit();
+  }
+
+  replaceByHashes(element) {
+    let text = this.content;
+    let words: any;
+    words = text.split(" ");
+    words = words.map((word: string) => {
+      if (word[0] === "#") {
+        word = `<span class='hashtag'>${word}</span>`;
+      }
+      return word;
+    });
+    words = words.join(" ");
+    element.innerHTML = words;
   }
 }
