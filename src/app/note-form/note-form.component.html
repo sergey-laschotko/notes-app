@@ -1,4 +1,4 @@
-<form class="note-form">
+<form class="note-form" (submit)="sendData()">
   <div class="form-group">
     <label for="title">Title</label>
     <input class="form-control note-form_title-input" id="title" name="title" type="text" placeholder="Title" [(ngModel)]="title" />
@@ -8,7 +8,7 @@
     <textarea class="form-control note-form_content-input" id="content" name="content" placeholder="Note" [(ngModel)]="content"></textarea>
   </div>
   <div class="form-group">
-    <button class="btn btn-primary" [disabled]="!title || !content" (click)="sendData()">
+    <button class="btn btn-primary" [disabled]="!title || !content">
       <i class="fa fa-check"></i>
       {{action}}
     </button>
