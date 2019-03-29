@@ -31,7 +31,7 @@ export class NoteComponent {
     let words: any;
     words = text.split(" ");
     words = words.map((word: string) => {
-      if (word[0] === "#") {
+      if (word[0] === "#" && word.length > 1) {
         word = `<span class='hashtag'>${word}</span>`;
       }
       return word;

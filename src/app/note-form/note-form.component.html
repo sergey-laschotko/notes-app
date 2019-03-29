@@ -1,11 +1,36 @@
 <form class="note-form" (submit)="sendData()">
   <div class="form-group">
     <label for="title">Title</label>
-    <input class="form-control note-form_title-input" id="title" name="title" type="text" placeholder="Title" [(ngModel)]="title" />
+    <input 
+      class="form-control note-form_title-input" 
+      id="title" 
+      name="title" 
+      type="text" 
+      placeholder="Title" 
+      [(ngModel)]="title" 
+    />
   </div>
   <div class="form-group">
     <label for="content">Content</label>
-    <textarea class="form-control note-form_content-input" id="content" name="content" placeholder="Note" [(ngModel)]="content"></textarea>
+    <div class="note-form_content-wrapper">
+      <div class="note-form_content-view">
+        <span *ngIf="!content" style="color: #6c757d; position: relative; top: 2px">Note Content</span>
+        <span *ngIf="content">{{content}}</span>
+      </div>
+      <div 
+        #noteContent
+        class="note-form_content-input" 
+        contenteditable="true"
+        [textContent]="content"
+        (input)="replaceTags($event)"
+        (keydown)="preventEnter($event)"
+      ></div>
+    </div>
+  </div>
+  <div class="row my-3 ml-2 mr-2 tags">
+    <h4>Tags:</h4>
+    <p *ngIf="tags.length" class="note-form_tags-list"><span class="hashtag mr-2 ml-2" *ngFor="let tag of tags">{{tag}}</span></p>
+    <p *ngIf="!tags.length" class="note-form_tags-list">No tags was found</p>
   </div>
   <div class="form-group">
     <button class="btn btn-primary" [disabled]="!title || !content">
