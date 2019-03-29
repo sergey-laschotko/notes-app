@@ -5,8 +5,7 @@
       class="form-control note-form_title-input" 
       id="title" 
       name="title" 
-      type="text" 
-      placeholder="Title" 
+      type="text"
       [(ngModel)]="title" 
     />
   </div>
@@ -14,7 +13,6 @@
     <label for="content">Content</label>
     <div class="note-form_content-wrapper">
       <div class="note-form_content-view">
-        <span *ngIf="!content" style="color: #6c757d; position: relative; top: 2px">Note Content</span>
         <span *ngIf="content">{{content}}</span>
       </div>
       <div 

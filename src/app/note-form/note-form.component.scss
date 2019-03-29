@@ -1,6 +1,6 @@
 .note-form {
     &_content-wrapper {
-        height: 200px;
+        min-height: 200px;
         position: relative;
     }
 
@@ -10,6 +10,7 @@
         top:0; left:0;
         padding: .375rem .75rem;
         height: 100%;
+        min-height: 200px;
         width: 353px;
         max-width: 353px;
       }
@@ -21,6 +22,7 @@
         border: 1px solid #ced4da;
         border-radius: .25rem;
         padding: .375rem .75rem;
+        min-height: 200px;
         height: 100%;
         width: 353px;
         max-width: 353px;
